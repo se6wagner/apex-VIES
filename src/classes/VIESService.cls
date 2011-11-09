@@ -97,35 +97,5 @@ public class VIESService {
 		}
 		return ERROR_CODE.UNKNOWN;
 	}
-	/*
-        public VIEStypes.checkVatApproxResponse_element checkVatApprox(String countryCode,String vatNumber,String traderName,String traderCompanyType,String traderStreet,String traderPostcode,String traderCity,String requesterCountryCode,String requesterVatNumber) {
-            VIEStypes.checkVatApprox_element request_x = new VIEStypes.checkVatApprox_element();
-            VIEStypes.checkVatApproxResponse_element response_x;
-            request_x.countryCode = countryCode;
-            request_x.vatNumber = vatNumber;
-            request_x.traderName = traderName;
-            request_x.traderCompanyType = traderCompanyType;
-            request_x.traderStreet = traderStreet;
-            request_x.traderPostcode = traderPostcode;
-            request_x.traderCity = traderCity;
-            request_x.requesterCountryCode = requesterCountryCode;
-            request_x.requesterVatNumber = requesterVatNumber;
-            Map<String, VIEStypes.checkVatApproxResponse_element> response_map_x = new Map<String, VIEStypes.checkVatApproxResponse_element>();
-            response_map_x.put('response_x', response_x);
-            WebServiceCallout.invoke(
-              this,
-              request_x,
-              response_map_x,
-              new String[]{endpoint_x,
-              '',
-              'urn:ec.europa.eu:taxud:vies:services:checkVat:types',
-              'checkVatApprox',
-              'urn:ec.europa.eu:taxud:vies:services:checkVat:types',
-              'checkVatApproxResponse',
-              'VIEStypes.checkVatApproxResponse_element'}
-            );
-            response_x = response_map_x.get('response_x');
-            return response_x;
-        }
-    */
+
 }

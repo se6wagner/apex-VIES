@@ -6,10 +6,9 @@ public class VIES {
 
 	public static VATCheck checkVAT(String vatID){
 
-		String countryCode = vatID.substring(0,2);
-		String vatNumber = vatID.substring(2,vatID.length());		
-
-		return checkVAT(countryCode,vatNumber);
+		VATCheck result = new VATCheck();
+		result.vatId = vatId;
+		return result.checkVAT();
 	}
 
 
@@ -109,6 +108,5 @@ public class VIES {
 
 			return this;
 		}
-
 	}
 }

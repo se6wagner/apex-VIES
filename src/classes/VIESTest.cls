@@ -16,18 +16,44 @@ private class VIESTest {
 	private static testMethod void checkVATNumber(){
 
 		VIES.VATCheck result = VIES.checkVAT(countryCode,vatNumber);
-		system.assertEquals(VIES.CHECK_STATUS_CODE.COMPLETED,result.status);
+		system.assertEquals(VIES.CHECK_STATUS_CODE.COMPLETED,result.statusCode);
 		system.assertEquals(true,result.isValid);
 
 	}
 
 
-	private static testMethod void splitVATId(){
+	private static testMethod void nullInputs(){
 
-		Map<String,String> map_x = VIES.splitVATID(vatID);
-		system.assertEquals(countryCode,map_x.get('countryCode'));
-		system.assertEquals(vatNumber,map_x.get('vatNumber'));
+		String null_String;
+
+		try {
+			VIESTypes.CheckResponse resp = new VIESService().checkVAT(null_String);
+		} catch(Exception ex){
+			system.assertEquals(true, ex instanceof VIESException);
+		}
+
+		try {
+			VIESTypes.CheckResponse resp = new VIESService().checkVAT(null_String,null_String);
+		} catch(Exception ex){
+			system.assertEquals(true, ex instanceof VIESException);
+		}
+		
+		try {
+			VIES.VATCheck check = new VIES.VATCheck();
+			check.checkVAT();
+		} catch(Exception ex){
+			system.assertEquals(true, ex instanceof VIESException);
+		}
 
 	}
+
+	private static testMethod void utilTest(){
+		
+		system.assertEquals(countryCode,VIES.getCountryCode(vatID));
+		system.assertEquals(vatNumber,VIES.getVATNumber(vatID));
+		system.assertEquals(VIESService.ERROR_CODE.INVALID_INPUT,VIESService.getErrorCode('INVALID_INPUT'));
+		system.assertEquals(VIESService.ERROR_CODE.UNKNOWN,VIESService.getErrorCode('UNDEFINED'));		
+	}
+
 
 }
