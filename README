@@ -1,0 +1,32 @@
+
+h1. apex-VIES
+
+apex-VIES provides a simple API to validate EU VAT Numbers using the VIES VAT number validation WebService http://ec.europa.eu/taxation_customs/vies/vieshome.do
+
+h2. How to use apex-VIES API
+
+
+h3. Checking VAT Numbers
+
+
+the API returns VIES.VATCheck wrapper objects holding all information
+<code>
+	// submit a complete VATId for validation
+	VIES.VATCheck checkResult = VIES.checkVAT('DE812639372');
+
+	//you can submit country Code and vatNumber seperatly
+	checkResult = VIES.checkVAT('DE','812639372');
+
+</code>
+
+
+h3. Utils
+
+Splitting a VAT ID into countryCode and vatNumber
+
+<code>
+	VIES.splitVATID('DE812639372');
+</code>
+
+
+VIES FAQ http://ec.europa.eu/taxation_customs/vies/faqvies.do

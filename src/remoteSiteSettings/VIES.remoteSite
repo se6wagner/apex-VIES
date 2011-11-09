@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>WebService Endpoint VIES valiation for http://ec.europa.eu/taxation_customs/vies/vieshome.do</description>
+    <disableProtocolSecurity>true</disableProtocolSecurity>
+    <isActive>true</isActive>
+    <url>http://ec.europa.eu</url>
+</RemoteSiteSetting>

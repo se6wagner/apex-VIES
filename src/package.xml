@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>VIES</members>
+        <members>VIESException</members>
+        <members>VIESService</members>
+        <members>VIESTest</members>
+        <members>VIESTypes</members>
+        <members>VIESVATCheckController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>VIESVATCheck</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>VIESVATCheck</members>
+        <name>ApexPage</name>
+    </types>
+    <version>23.0</version>
+</Package>

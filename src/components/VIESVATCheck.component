@@ -1,0 +1,45 @@
+<apex:component controller="VIESVATCheckController" allowDML="true" access="global" id="VATcheck">
+
+<apex:attribute name="vatNumberMode" default="false" type="Boolean" description="True to display VAT Number"/>
+<apex:attribute name="showCompany" default="false" type="Boolean" description="True to display VAT Number"/>
+<apex:outputPanel id="checkPanel">
+	<!--  INPUT PANELS -->
+	<apex:outputPanel id="inputs" layout="block">
+		<apex:inputText value="{!VATcheck.vatID}" id="idInput" size="12" rendered="{!!vatNumberMode}"/>
+		<apex:inputText value="{!VATcheck.countryCode}" id="countryInput" size="2" rendered="{!vatNumberMode}"/>
+		<apex:inputText value="{!VATcheck.vatNumber}" id="numberInput" size="12" rendered="{!vatNumberMode}"/>
+		<apex:commandButton value="Check" action="{!validate}" id="validateButton" status="validationStatus" reRender="checkPanel"/>
+	</apex:outputPanel>	
+	
+	<!--  RESULTS PANEL -->
+	<apex:outputPanel id="result">
+		<apex:actionStatus id="validationStatus" startText="Validating ...">
+			<apex:facet name="stop">
+				<apex:outputPanel layout="block">
+					<!-- VALID MESSAGE -->
+					<apex:pageMessage title="Valid VAT: {!IF(!ISNULL(VATcheck.vatID),VATcheck.vatID,VATcheck.countryCode&VATcheck.vatNumber)}"
+							severity="CONFIRM"
+							strength="1"
+							detail="{!IF(showCompany,'Company: '&IF(!ISNULL(VATcheck.name),VATcheck.name&' - '&VATcheck.address,'Unknown'),'')}"							
+							rendered="{!Status = 'COMPLETED' && VATcheck.isValid}">
+					</apex:pageMessage>
+					<!--  INVALID MESSAGE -->
+					<apex:pageMessage title="Invalid VAT: {!IF(!ISNULL(VATcheck.vatID),VATcheck.vatID,VATcheck.countryCode&VATcheck.vatNumber)}"
+							severity="ERROR"
+							strength="1"
+							rendered="{!Status = 'COMPLETED' && VATcheck.isValid = false}"/>
+					<!-- ERROR MESSAGE -->
+					<apex:pageMessage title="Validation failed"
+							severity="WARNING"
+							strength="1"
+							summary="Error: {!VATcheck.errorCode}"
+							detail="{!IF($CurrentPage.Parameters.statusMessage = '1',VATcheck.statusMessage,'')}"
+							rendered="{!Status = 'FAILED'}"							
+							/>
+				</apex:outputPanel>
+			</apex:facet>
+		</apex:actionStatus>
+	</apex:outputPanel>
+</apex:outputPanel>
+
+</apex:component>

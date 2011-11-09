@@ -1,0 +1,31 @@
+<apex:page controller="VIESVATCheckController" title="VIES VATCheck" id="page">
+
+<apex:form id="frm">
+
+<apex:pageBlock title="Details" id="block">
+
+	<apex:pageBlockSection id="section">
+
+		<apex:pageBlockSectionItem id="inputs">
+			<apex:outputLabel value="VAT ID"/>
+			<apex:outputPanel id="inputs">
+				<apex:inputText value="{!VATcheck.countryCode}" id="countryInput" size="2"/>
+				<apex:inputText value="{!VATcheck.vatNumber}" id="numberInput" size="12"/>
+				<apex:commandButton value="Check" action="{!validate}" id="validateButton"/>
+			</apex:outputPanel>
+		</apex:pageBlockSectionItem>
+		
+		<apex:pageBlockSectionItem id="results">
+		
+			<apex:outputLabel value=""/>
+			<apex:outputPanel >
+			<apex:pageMessage title="Valid VAT" severity="CONFIRM" strength="1" rendered="{!Status = 'COMPLETED' && VATcheck.isValid}"/>
+			<apex:pageMessage title="Invalid VAT" severity="ERROR" strength="1" rendered="{!Status = 'COMPLETED' && VATcheck.isValid = false}"/>
+			<apex:pageMessage title="Validation failed" severity="WARNING" strength="1" rendered="{!Status = 'FAILED'}" summary="'' &{!VATcheck.errorCode}" detail="{!VATcheck.statusMessage}"/>			
+			</apex:outputPanel>
+		</apex:pageBlockSectionItem>
+	</apex:pageBlockSection>
+	
+</apex:pageBlock>
+</apex:form>
+</apex:page>
