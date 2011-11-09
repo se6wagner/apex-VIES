@@ -3,6 +3,35 @@
  */
 public class VIES {
 
+	/**
+	 * Returns intieger indicating if a VAT ID is valid or not
+	 *
+	 * 0 = validation failed
+	 * 1 = valid
+	 * 2 = invalid
+	 */
+	public static Integer isValidVATID(String vatID){
+		return isValidVATID(checkVAT(vatID));
+	}
+
+	public static Integer isValidVATID(String countryCode, String vatNumber){
+		return isValidVATID(checkVAT(countryCode,vatNumber));				
+	}
+
+	public static Integer isValidVATID(VATCheck check){
+
+		VATCheck toCheck = check.statusCode == VIES.CHECK_STATUS_CODE.PENDING
+				? check.checkVAT()
+				: check;
+
+		return toCheck.statusCode == VIES.CHECK_STATUS_CODE.FAILED
+				? 0
+				: (toCheck.isValid
+					? 1
+					: 2
+					);
+	}
+
 
 	public static VATCheck checkVAT(String vatID){
 

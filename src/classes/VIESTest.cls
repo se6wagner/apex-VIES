@@ -21,6 +21,16 @@ private class VIESTest {
 
 	}
 
+	private static testMethod void isValidVAT_check(){
+		VIES.VATCheck result = new VIES.VATCheck();
+		system.assertEquals(0, VIES.isValidVATID(result));
+	}
+	private static testMethod void isValidVATID(){
+		system.assertEquals(1,VIES.isValidVATID(vatID));
+	}
+	private static testMethod void isValidVATNumber(){
+		system.assertEquals(1,VIES.isValidVATID(countryCode,vatNumber));
+	}
 
 	private static testMethod void nullInputs(){
 
